@@ -1,243 +1,116 @@
-# Ollama Web UI: A User-Friendly Web Interface for Chat Interactions 👋
+# 🦜️🔗 LangChain + Next.js Starter Template
 
-![GitHub stars](https://img.shields.io/github/stars/ollama-webui/ollama-webui?style=social)
-![GitHub forks](https://img.shields.io/github/forks/ollama-webui/ollama-webui?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/ollama-webui/ollama-webui?style=social)
-![GitHub repo size](https://img.shields.io/github/repo-size/ollama-webui/ollama-webui)
-![GitHub language count](https://img.shields.io/github/languages/count/ollama-webui/ollama-webui)
-![GitHub top language](https://img.shields.io/github/languages/top/ollama-webui/ollama-webui)
-![GitHub last commit](https://img.shields.io/github/last-commit/ollama-webui/ollama-webui?color=red)
-![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Follama-webui%2Follama-wbui&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)
-[![Discord](https://img.shields.io/badge/Discord-Ollama_Web_UI-blue?logo=discord&logoColor=white)](https://discord.gg/5rJgQTnV4s)
-[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/tjbck)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/langchain-ai/langchain-nextjs-template)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flangchain-ai%2Flangchain-nextjs-template)
 
-ChatGPT-Style Web Interface for Ollama 🦙
+This template scaffolds a LangChain.js + Next.js starter app. It showcases how to use and combine LangChain modules for several
+use cases. Specifically:
 
-![Ollama Web UI Demo](./demo.gif)
+- [Simple chat](/app/api/chat/route.ts)
+- [Returning structured output from an LLM call](/app/api/chat/structured_output/route.ts)
+- [Answering complex, multi-step questions with agents](/app/api/chat/agents/route.ts)
+- [Retrieval augmented generation (RAG) with a chain and a vector store](/app/api/chat/retrieval/route.ts)
+- [Retrieval augmented generation (RAG) with an agent and a vector store](/app/api/chat/retrieval_agents/route.ts)
 
-Also check our sibling project, [OllamaHub](https://ollamahub.com/), where you can discover, download, and explore customized Modelfiles for Ollama! 🦙🔍
+Most of them use Vercel's [AI SDK](https://github.com/vercel-labs/ai) to stream tokens to the client and display the incoming messages.
 
-## Features ⭐
+![Demo GIF](/public/images/agent-convo.gif)
 
-- 🖥️ **Intuitive Interface**: Our chat interface takes inspiration from ChatGPT, ensuring a user-friendly experience.
+You can check out a hosted version of this repo here: https://langchain-nextjs-template.vercel.app/
 
-- 📱 **Responsive Design**: Enjoy a seamless experience on both desktop and mobile devices.
+## 🚀 Getting Started
 
-- ⚡ **Swift Responsiveness**: Enjoy fast and responsive performance.
+First, clone this repo and download it locally.
 
-- 🚀 **Effortless Setup**: Install seamlessly using Docker for a hassle-free experience.
+Next, you'll need to set up environment variables in your repo's `.env.local` file. Copy the `.env.example` file to `.env.local`.
+To start with the basic examples, you'll just need to add your OpenAI API key.
 
-- 💻 **Code Syntax Highlighting**: Enjoy enhanced code readability with our syntax highlighting feature.
+Next, install the required packages using your preferred package manager (e.g. `yarn`).
 
-- ✒️🔢 **Full Markdown and LaTeX Support**: Elevate your LLM experience with comprehensive Markdown and LaTeX capabilities for enriched interaction.
-
-- 📥🗑️ **Download/Delete Models**: Easily download or remove models directly from the web UI.
-
-- 🤖 **Multiple Model Support**: Seamlessly switch between different chat models for diverse interactions.
-
-- ⚙️ **Many Models Conversations**: Effortlessly engage with various models simultaneously, harnessing their unique strengths for optimal responses. Enhance your experience by leveraging a diverse set of models in parallel.
-
-- 🤝 **OpenAI Model Integration**: Seamlessly utilize OpenAI models alongside Ollama models for a versatile conversational experience.
-
-- 🔄 **Regeneration History Access**: Easily revisit and explore your entire regeneration history.
-
-- 📜 **Chat History**: Effortlessly access and manage your conversation history.
-
-- 📤📥 **Import/Export Chat History**: Seamlessly move your chat data in and out of the platform.
-
-- 🗣️ **Voice Input Support**: Engage with your model through voice interactions; enjoy the convenience of talking to your model directly. Additionally, explore the option for sending voice input automatically after 3 seconds of silence for a streamlined experience.
-
-- ⚙️ **Fine-Tuned Control with Advanced Parameters**: Gain a deeper level of control by adjusting parameters such as temperature and defining your system prompts to tailor the conversation to your specific preferences and needs.
-
-- 🔐 **Auth Header Support**: Effortlessly enhance security by adding Authorization headers to Ollama requests directly from the web UI settings, ensuring access to secured Ollama servers.
-
-- 🔗 **External Ollama Server Connection**: Seamlessly link to an external Ollama server hosted on a different address by configuring the environment variable during the Docker build phase. Additionally, you can also set the external server connection URL from the web UI post-build.
-
-- 🔒 **Backend Reverse Proxy Support**: Strengthen security by enabling direct communication between Ollama Web UI backend and Ollama, eliminating the need to expose Ollama over LAN.
-
-- 🌟 **Continuous Updates**: We are committed to improving Ollama Web UI with regular updates and new features.
-
-## 🔗 Also Check Out OllamaHub! 
-
-Don't forget to explore our sibling project, [OllamaHub](https://ollamahub.com/), where you can discover, download, and explore customized Modelfiles. OllamaHub offers a wide range of exciting possibilities for enhancing your chat interactions with Ollama! 🚀
-
-## How to Install 🚀
-
-### Installing Both Ollama and Ollama Web UI Using Docker Compose
-
-If you don't have Ollama installed yet, you can use the provided Docker Compose file for a hassle-free installation. Simply run the following command:
+Now you're ready to run the development server:
 
 ```bash
-docker compose up -d --build
+yarn dev
 ```
 
-This command will install both Ollama and Ollama Web UI on your system. Ensure to modify the `compose.yaml` file for GPU support and Exposing Ollama API outside the container stack if needed.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result! Ask the bot something and you'll see a streamed response:
 
-### Installing Ollama Web UI Only
+![A streaming conversation between the user and the AI](/public/images/chat-conversation.png)
 
-#### Prerequisites
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Make sure you have the latest version of Ollama installed before proceeding with the installation. You can find the latest version of Ollama at [https://ollama.ai/](https://ollama.ai/).
+Backend logic lives in `app/api/chat/route.ts`. From here, you can change the prompt and model, or add other modules and logic.
 
-##### Checking Ollama
+## 🧱 Structured Output
 
-After installing Ollama, verify that Ollama is running by accessing the following link in your web browser: [http://127.0.0.1:11434/](http://127.0.0.1:11434/). Note that the port number may differ based on your system configuration.
+The second example shows how to have a model return output according to a specific schema using OpenAI Functions.
+Click the `Structured Output` link in the navbar to try it out:
 
-#### Using Docker 🐳
+![A streaming conversation between the user and an AI agent](/public/images/structured-output-conversation.png)
 
-If Ollama is hosted on your local machine and accessible at [http://127.0.0.1:11434/](http://127.0.0.1:11434/), run the following command:
+The chain in this example uses a [popular library called Zod](https://zod.dev) to construct a schema, then formats it in the way OpenAI expects.
+It then passes that schema as a function into OpenAI and passes a `function_call` parameter to force OpenAI to return arguments in the specified format.
 
-```bash
-docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway --name ollama-webui --restart always ghcr.io/ollama-webui/ollama-webui:main
-```
+For more details, [check out this documentation page](https://js.langchain.com/docs/modules/chains/popular/structured_output).
 
-Alternatively, if you prefer to build the container yourself, use the following command:
+## 🦜 Agents
 
-```bash
-docker build -t ollama-webui .
-docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway --name ollama-webui --restart always ollama-webui
-```
+To try out the agent example, you'll need to give the agent access to the internet by populating the `SERPAPI_API_KEY` in `.env.local`.
+Head over to [the SERP API website](https://serpapi.com/) and get an API key if you don't already have one.
 
-Your Ollama Web UI should now be hosted at [http://localhost:3000](http://localhost:3000) and accessible over LAN (or Network). Enjoy! 😄
+You can then click the `Agent` example and try asking it more complex questions:
 
-#### Accessing External Ollama on a Different Server
+![A streaming conversation between the user and an AI agent](/public/images/agent-conversation.png)
 
-Change `OLLAMA_API_BASE_URL` environment variable to match the external Ollama Server url:
+This example uses the OpenAI Functions agent, but there are a few other options you can try as well.
+See [this documentation page for more details](https://js.langchain.com/docs/modules/agents/agent_types/).
 
-```bash
-docker run -d -p 3000:8080 -e OLLAMA_API_BASE_URL=https://example.com/api --name ollama-webui --restart always ghcr.io/ollama-webui/ollama-webui:main
-```
+## 🐶 Retrieval
 
-Alternatively, if you prefer to build the container yourself, use the following command:
+The retrieval examples both use Supabase as a vector store. However, you can swap in
+[another supported vector store](https://js.langchain.com/docs/modules/data_connection/vectorstores/integrations/) if preferred by changing
+the code under `app/api/retrieval/ingest/route.ts`, `app/api/chat/retrieval/route.ts`, and `app/api/chat/retrieval_agents/route.ts`.
 
-```bash
-docker build -t ollama-webui .
-docker run -d -p 3000:8080 -e OLLAMA_API_BASE_URL=https://example.com/api --name ollama-webui --restart always ollama-webui
-```
+For Supabase, follow [these instructions](https://js.langchain.com/docs/modules/data_connection/vectorstores/integrations/supabase) to set up your
+database, then get your database URL and private key and paste them into `.env.local`.
 
-## How to Install Without Docker
+You can then switch to the `Retrieval` and `Retrieval Agent` examples. The default document text is pulled from the LangChain.js retrieval
+use case docs, but you can change them to whatever text you'd like.
 
-While we strongly recommend using our convenient Docker container installation for optimal support, we understand that some situations may require a non-Docker setup, especially for development purposes. Please note that non-Docker installations are not officially supported, and you might need to troubleshoot on your own.
+For a given text, you'll only need to press `Upload` once. Pressing it again will re-ingest the docs, resulting in duplicates.
+You can clear your Supabase vector store by navigating to the console and running `DELETE FROM docuemnts;`.
 
-### Project Components
+After splitting, embedding, and uploading some text, you're ready to ask questions!
 
-The Ollama Web UI consists of two primary components: the frontend and the backend (which serves as a reverse proxy, handling static frontend files, and additional features). Both need to be running concurrently for the development environment using `npm run dev`. Alternatively, you can set the `PUBLIC_API_BASE_URL` during the build process to have the frontend connect directly to your Ollama instance or build the frontend as static files and serve them with the backend.
+![A streaming conversation between the user and an AI retrieval chain](/public/images/retrieval-chain-conversation.png)
 
-### Prerequisites
+![A streaming conversation between the user and an AI retrieval agent](/public/images/retrieval-agent-conversation.png)
 
-1. **Clone and Enter the Project:**
+For more info on retrieval chains, [see this page](https://js.langchain.com/docs/use_cases/question_answering/).
+The specific variant of the conversational retrieval chain used here is composed using LangChain Expression Language, which you can
+[read more about here](https://js.langchain.com/docs/guides/expression_language/cookbook). This chain example will also return cited sources
+via header in addition to the streaming response.
 
-   ```sh
-   git clone https://github.com/ollama-webui/ollama-webui.git
-   cd ollama-webui/
-   ```
+For more info on retrieval agents, [see this page](https://js.langchain.com/docs/use_cases/question_answering/conversational_retrieval_agents).
 
-2. **Create and Edit `.env`:**
+## 📚 Learn More
 
-   ```sh
-   cp -RPp example.env .env
-   ```
+The example chains in the `app/api/chat/route.ts` and `app/api/chat/retrieval/route.ts` files use
+[LangChain Expression Language](https://js.langchain.com/docs/guides/expression_language/interface) to
+compose different LangChain modules together. You can integrate other retrievers, agents, preconfigured chains, and more too, though keep in mind
+`BytesOutputParser` is meant to be used directly with model output.
 
-### Building Ollama Web UI Frontend
+To learn more about what you can do with LangChain.js, check out the docs here:
 
-1. **Install Node Dependencies:**
+- https://js.langchain.com/docs/
 
-   ```sh
-   npm install
-   ```
+## ▲ Deploy on Vercel
 
-2. **Run in Dev Mode or Build for Deployment:**
+When ready, you can deploy your app on the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
-   - Dev Mode (requires the backend to be running simultaneously):
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-     ```sh
-     npm run dev
-     ```
+## Thank You!
 
-   - Build for Deployment:
-
-     ```sh
-     # `PUBLIC_API_BASE_URL` overwrites the value in `.env`
-     PUBLIC_API_BASE_URL='https://example.com/api' npm run build
-     ```
-
-3. **Test the Build with `Caddy` (or your preferred server):**
-
-   ```sh
-   curl https://webi.sh/caddy | sh
-
-   PUBLIC_API_BASE_URL='https://localhost/api' npm run build
-   caddy run --envfile .env --config ./Caddyfile.localhost
-   ```
-
-### Running Ollama Web UI Backend
-
-If you wish to run the backend for deployment, ensure that the frontend is built so that the backend can serve the frontend files along with the API route.
-
-#### Setup Instructions
-
-1. **Install Python Requirements:**
-
-   ```sh
-   cd ./backend
-   pip install -r requirements.txt
-   ```
-
-2. **Run Python Backend:**
-
-   - Dev Mode with Hot Reloading:
-
-     ```sh
-     sh dev.sh
-     ```
-
-   - Deployment:
-
-     ```sh
-     sh start.sh
-     ```
-
-Now, you should have the Ollama Web UI up and running at [http://localhost:8080/](http://localhost:8080/). Feel free to explore the features and functionalities of Ollama! If you encounter any issues, please refer to the instructions above or reach out to the community for assistance.
-
-## Troubleshooting
-
-See [TROUBLESHOOTING.md](/TROUBLESHOOTING.md) for information on how to troubleshoot and/or join our [Ollama Web UI Discord community](https://discord.gg/5rJgQTnV4s).
-
-## What's Next? 🚀
-
-### Roadmap 📝
-
-Here are some exciting tasks on our roadmap:
-
-
-- 🗃️ **Modelfile Builder**: Easily create Ollama modelfiles via the web UI. Create and add your own character to Ollama by customizing system prompts, conversation starters, and more.
-- 🔄 **Multi-Modal Support**: Seamlessly engage with models that support multimodal interactions, including images (e.g., LLava).
-- 📚 **RAG Integration**: Experience first-class retrieval augmented generation support, enabling chat with your documents.
-- 🔐 **Access Control**: Securely manage requests to Ollama by utilizing the backend as a reverse proxy gateway, ensuring only authenticated users can send specific requests.
-- 🧪 **Research-Centric Features**: Empower researchers in the fields of LLM and HCI with a comprehensive web UI for conducting user studies. Stay tuned for ongoing feature enhancements (e.g., surveys, analytics, and participant tracking) to facilitate their research.
-- 📈 **User Study Tools**: Providing specialized tools, like heat maps and behavior tracking modules, to empower researchers in capturing and analyzing user behavior patterns with precision and accuracy.
-- 📚 **Enhanced Documentation**: Elevate your setup and customization experience with improved, comprehensive documentation.
-
-Feel free to contribute and help us make Ollama Web UI even better! 🙌
-
-## Supporters ✨
-
-A big shoutout to our amazing supporters who's helping to make this project possible! 🙏
-
-### Platinum Sponsors 🤍
-
-- [Prof. Lawrence Kim @ SFU](https://www.lhkim.com/)
-
-## License 📜
-
-This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details. 📄
-
-## Support 💬
-
-If you have any questions, suggestions, or need assistance, please open an issue or join our
-[Ollama Web UI Discord community](https://discord.gg/5rJgQTnV4s) or
-[Ollama Discord community](https://discord.gg/ollama) to connect with us! 🤝
-
----
-
-Created by [Timothy J. Baek](https://github.com/tjbck) - Let's make Ollama Web UI even more amazing together! 💪
+Thanks for reading! If you have any questions or comments, reach out to us on Twitter
+[@LangChainAI](https://twitter.com/langchainai), or [click here to join our Discord server](https://discord.gg/langchain).
