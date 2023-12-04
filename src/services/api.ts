@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
+import { baseUrl } from './appConfig'
 import { ref } from 'vue'
 
 export type GenerateCompletionRequest = {
@@ -113,7 +114,7 @@ export type GenerateEmbeddingsResponse = {
 }
 
 // Define the base URL for the API
-const API_BASE_URL = 'http://localhost:11434/api'
+const API_BASE_URL = `http://${baseUrl.value}`;
 
 // Create an Axios instance
 const apiClient: AxiosInstance = axios.create({
