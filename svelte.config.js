@@ -15,7 +15,8 @@ const config = {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: 'index.html'
+			fallback: 'index.html',
+			runtime: 'nodejs18.x',
 		})
 	}
 };
